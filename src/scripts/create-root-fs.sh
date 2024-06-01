@@ -2,31 +2,27 @@
 
 set -e
 
-generate_platform() {
-  echo '#!/usr/bin/bash' > $platform_generated_path
-  echo "platform=$platform" >> $platform_generated_path
-  echo "echo $platform" >> $platform_generated_path
-}
-
-platform_generated_path=$(dirname "$0")/../constants/generated/platform.sh
+set -a 
+source .env
+set +a
 
 user=$(whoami)
-
 platform=$(sh $(dirname "$0")/../constants/platform.sh)
-platform=$(echo $platform | sed "s/linux\///g")
 platform_arr=($(echo $platform | tr "," "\n"))
 
-generate_platform
-
-rootfs=$(sh $(dirname "$0")/../constants/rootfs.sh)
-
-for arch in "${platform_arr[@]}"
+for platform_name in "${platform_arr[@]}"
 do  
-  echo "Creating rootfs for arch $arch"
-  rootfs_arch=$rootfs-$arch
+  arch=$(echo $platform_name | sed "s/linux\///g")
+  rootfs_arch=$ROOTFS_PATH/$platform_name
+  echo "Creating rootfs for arch $arch to $rootfs_arch"
   sudo rm -rf $rootfs_arch
-  sudo debootstrap --arch=$arch --foreign stable $rootfs_arch/
   qemu=$arch
+  if [ $arch = 'ppc64le' ]; then
+    arch=ppc64el
+  fi
+
+  sudo debootstrap --arch=$arch --foreign stable $rootfs_arch/
+  
   if [ $qemu = 'arm64' ]; then
     qemu=aarch64
   fi

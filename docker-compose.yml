@@ -4,6 +4,8 @@ services:
     build: 
       context: ./
       dockerfile: Dockerfile
+      args:
+        - ROOTFS_PATH=${ROOTFS_PATH}
     ports:
       - 8011:80
   

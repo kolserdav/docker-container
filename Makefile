@@ -14,3 +14,5 @@ remount:
 	./src/scripts/remount.sh
 multiarch-install:
 	./src/scripts/multiarch-install.sh
+login:
+	./src/scripts/login.sh

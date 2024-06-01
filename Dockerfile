@@ -22,3 +22,7 @@ COPY $ROOTFS_ARCH/var /var
 RUN apt-get update && apt-get install nginx -y
 
 CMD ["nginx", "-g", "daemon off;"]
+
+LABEL org.opencontainers.image.source=https://github.com/kolserdav/debian
+LABEL org.opencontainers.image.description="My container image"
+LABEL org.opencontainers.image.licenses=MIT

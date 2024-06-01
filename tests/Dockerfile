@@ -1,0 +1,1 @@
+FROM --platform=linux/amd64 ghcr.io/kolserdav/docker-container as container

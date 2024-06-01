@@ -14,4 +14,4 @@ if [ -f $i386 ]; then
     mv $i386 $ROOTFS_PATH/linux/386
 fi
 
-docker buildx build --platform=$platform -f=$PWD/Dockerfile --output="type=image" --tag="conhos-node:latest" $ROOTFS_PATH
+docker buildx build --platform=$platform -f=$PWD/Dockerfile --output='type=registry' --tag='ghcr.io/kolserdav/docker-container:latest'  $ROOTFS_PATH

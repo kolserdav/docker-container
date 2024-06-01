@@ -1,0 +1,9 @@
+services:
+  scratch:
+    container_name: scratch
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8011:80
+  

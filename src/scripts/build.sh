@@ -2,9 +2,12 @@
 
 set -e
 
-set -a 
-source .env
-set +a
+
+if [ -f .env ]; then
+    set -a 
+    source .env
+    set +a
+fi
 
 rootfs_script=$(dirname "$0")/create-rootfs.sh
 

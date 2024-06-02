@@ -2,9 +2,11 @@
 
 set -e
 
-set -a 
-source .env
-set +a
+if [ -f .env ]; then
+    set -a 
+    source .env
+    set +a
+fi
 
 user=$(whoami)
 platform=$(sh $(dirname "$0")/../constants/platform.sh)

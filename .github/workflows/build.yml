@@ -25,6 +25,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin
+      - name: Multiarch install
+        run: |
+          sh -c "./src/scripts/multiarch-installsh" 
       - name: Build containers
         env:
           ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}

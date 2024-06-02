@@ -32,5 +32,5 @@ do
         sudo mv $i386 $ROOTFS_PATH/$release/linux/386
     fi
 
-    docker buildx build --platform=$platform -f=$PWD/Dockerfile --build-arg="RELEASE=$release" --output='type=registry' -t="ghcr.io/kolserdav/debian:$release" $latest $ROOTFS_PATH
+    docker buildx build --platform=$platform -f=$PWD/Dockerfile --build-arg="RELEASE=$release" --output='type=registry' --annotation "org.opencontainers.image.description=Debian multi arch image" -t="ghcr.io/kolserdav/debian:$release" $latest $ROOTFS_PATH
 done

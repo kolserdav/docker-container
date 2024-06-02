@@ -22,8 +22,10 @@ jobs:
       - name: Login gchr.io
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}
         run: |
           echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin
       - name: Build
         run: |
-          echo 'pwd: ' && pwd
+          sh -c "./src/scripts/build.sh"
+          

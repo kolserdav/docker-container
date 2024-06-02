@@ -9,7 +9,7 @@ logs:
 restart:
 	make build && make start
 rootfs:
-	./src/scripts/create-root-fs.sh
+	./src/scripts/create-rootfs.sh $(RELEASE)
 remount:
 	./src/scripts/remount.sh
 multiarch-install:

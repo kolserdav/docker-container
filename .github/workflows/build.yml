@@ -24,3 +24,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin
+      - name: Build
+        run: |
+          echo 'pwd: ' && pwd

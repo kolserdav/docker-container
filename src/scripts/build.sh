@@ -26,7 +26,7 @@ do
     i386=$ROOTFS_PATH/$release/linux/i386
     if [ -d $i386 ]; then
         echo "Moving $i386"
-        mv $i386 $ROOTFS_PATH/$release/linux/386
+        sudo mv $i386 $ROOTFS_PATH/$release/linux/386
     fi
 
     docker buildx build --platform=$platform -f=$PWD/Dockerfile --build-arg="RELEASE=$release" --output='type=registry' -t="ghcr.io/kolserdav/debian:$release" $latest $ROOTFS_PATH

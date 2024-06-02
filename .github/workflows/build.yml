@@ -1,0 +1,26 @@
+name: Build containera
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened]
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Prepare environment
+        run: |
+          sudo apt update
+          sudo apt install qemu-user-static
+          sudo apt install binfmt-support
+      - name: Login gchr.io
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin

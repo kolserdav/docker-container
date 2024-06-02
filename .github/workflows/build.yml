@@ -9,7 +9,7 @@ on:
     branches: [master]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
           ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}
         run: |
           echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin
-      - name: Build
+      - name: Build containers
         run: |
           sh -c "./src/scripts/build.sh"
           

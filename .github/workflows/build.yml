@@ -27,6 +27,8 @@ jobs:
         run: |
           echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin
       - name: Build containers
+        env:
+          ROOTFS_PATH: ${{ env.ROOTFS_PATH }}
         run: |
           sh -c "./src/scripts/build.sh"
           

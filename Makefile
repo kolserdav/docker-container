@@ -16,3 +16,5 @@ multiarch-install:
 	./src/scripts/multiarch-install.sh
 login:
 	./src/scripts/login.sh
+test:
+	docker build ./tests

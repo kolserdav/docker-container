@@ -21,9 +21,6 @@ COPY $ROOTFS_ARCH/tmp /tmp
 COPY $ROOTFS_ARCH/var /var
 
 RUN apt-get update
-#RUB apt-get install nginx -y
-
-#CMD ["nginx", "-g", "daemon off;"]
 
 LABEL org.opencontainers.image.source=https://github.com/kolserdav/docker-container
 LABEL org.opencontainers.image.description="Docker container from scratch"

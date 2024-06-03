@@ -32,5 +32,5 @@ jobs:
         env:
           ROOTFS_PATH: ${{ secrets.RROOTFS_PATH }}
         run: |
-          sh -c "./src/scripts/build.sh"
+          sh -c "./src/build.sh"
           

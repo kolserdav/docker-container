@@ -2,6 +2,6 @@
 
 # Supported releases: https://www.debian.org/releases/#index_of_releases
 
-releases=bullseye,bookworm
+releases=buster,bullseye,bookworm
 
 echo $releases

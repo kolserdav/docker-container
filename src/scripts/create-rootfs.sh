@@ -9,8 +9,6 @@ if [ -f .env ]; then
 fi
 
 user=$(whoami)
-platform=$(sh $(dirname "$0")/../constants/platform.sh)
-platform_arr=($(echo $platform | tr "," "\n"))
 
 releases=$(sh $(dirname "$0")/../constants/releases.sh)
 releases_arr=($(echo $releases | tr "," "\n"))
@@ -27,6 +25,9 @@ if [ $rel = "none" ]; then
   echo "Release not passed or not accept. Required one of: $releases, received: $1"
   exit 1
 fi
+
+platform=$(sh -c "$(dirname "$0")/../platform.sh debian $rel")
+platform_arr=($(echo $platform | tr "," "\n"))
 
 for platform_name in "${platform_arr[@]}"
 do  

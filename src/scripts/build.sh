@@ -11,9 +11,6 @@ fi
 
 rootfs_script=$(dirname "$0")/create-rootfs.sh
 
-platform=$(sh $(dirname "$0")/../constants/platform.sh)
-echo "Starting build $ROOTFS_PATH for platforms $platform"
-
 releases=$(sh $(dirname "$0")/../constants/releases.sh)
 releases_arr=($(echo $releases | tr "," "\n"))
 
@@ -32,5 +29,6 @@ do
         sudo mv $i386 $ROOTFS_PATH/$release/linux/386
     fi
 
-    docker buildx build --platform=$platform -f=$PWD/Dockerfile --build-arg="RELEASE=$release" --output='type=registry' --annotation "org.opencontainers.image.description=Debian multi arch image" -t="ghcr.io/kolserdav/debian:$release" $latest $ROOTFS_PATH
-done
+    platform=$(sh -c "$(dirname "$0")/../platform.sh debian $release")
+    echo "Starting build $ROOTFS_PATH for platforms $platform"
+    docker buildx build --platform=$platform -f=$PWD/Dockerfile --build-arg="RELEASE=$release" --output='type=registry' -t="ghcr.io/kolserdav/debian:$release" $latest $ROOTFS_PATH

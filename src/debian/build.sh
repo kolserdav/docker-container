@@ -35,7 +35,7 @@ do
 
     platform=$(sh -c "$(dirname "$0")/../platform.sh $OS $release")
     echo "Starting build $ROOTFS_PATH for platforms $platform"
-    cache_from="" #"--cache-from=ghcr.io/kolserdav/$OS:$release"
+    cache_from="--cache-from=ghcr.io/kolserdav/$OS:$release"
     docker buildx build --platform=$platform -f=$dockerfile_path --build-arg="RELEASE=$release" --build-arg="OS=$OS" \
      --provenance=false --output='type=registry' $cache_from -t="ghcr.io/kolserdav/$OS:$release" $latest $ROOTFS_PATH
 done

@@ -32,3 +32,4 @@ do
     platform=$(sh -c "$(dirname "$0")/../platform.sh debian $release")
     echo "Starting build $ROOTFS_PATH for platforms $platform"
     docker buildx build --platform=$platform -f=$PWD/Dockerfile --build-arg="RELEASE=$release" --output='type=registry' -t="ghcr.io/kolserdav/debian:$release" $latest $ROOTFS_PATH
+done

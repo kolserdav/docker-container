@@ -1,4 +1,4 @@
-name: Build containera
+name: Build containers
 
 on:
   push:
@@ -23,10 +23,14 @@ jobs:
       - name: Login gchr.io
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}
         run: |
           echo $GITHUB_TOKEN | docker login ghcr.io -u kolserdav --password-stdin
+      - name: Multiarch install
+        run: |
+          sh -c "./src/scripts/multiarch-install.sh" 
       - name: Build containers
+        env:
+          ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}
         run: |
           sh -c "./src/scripts/build.sh"
           

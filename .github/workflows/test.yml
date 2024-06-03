@@ -1,0 +1,16 @@
+name: Test containers
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Test containers
+        run: |
+          sh -c "./src/tests/run.sh"
+          

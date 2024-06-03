@@ -29,6 +29,8 @@ jobs:
         run: |
           sh -c "./src/multiarch-install.sh" 
       - name: Build containers
+        env:
+          ROOTFS_PATH: ${{ secrets.RROOTFS_PATH }}
         run: |
           sh -c "./src/scripts/build.sh"
           

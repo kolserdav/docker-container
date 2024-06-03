@@ -17,5 +17,5 @@ Build docker containers for some OSs from scratch
 | bullseye             | +    | +     | +     | +       | +     |
 | bookworm             | +    | +     | +     | +       | +     | 
 
-## Referenceses
+## References
 - [Debian minimal rootfs](https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs)

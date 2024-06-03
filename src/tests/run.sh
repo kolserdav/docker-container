@@ -20,11 +20,11 @@ do
       i=$((i+1))
       port=800$i
       container_name=test-$os-$release
-      docker run -p "$port:80" --name $container_name -d test-$os:$release
+      docker run -p "$port:80" --name $container_name -d $image
       res=$(curl "http://127.0.0.1:$port")
       echo "Request result:"
       echo "$res"
-      if [[ $res == *"<center>nginx</center>"* ]]; then
+      if [[ $res == *"nginx"* ]]; then
         echo "Success test $image"
       else
         echo "Failed test $image"

@@ -27,11 +27,10 @@ jobs:
           echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Multiarch install
         run: |
-          pwd
           sh -c "./src/multiarch-install.sh" 
       - name: Build containers
         env:
-          ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}
+          ROOTFS_PATH: ${{ env.ROOTFS_PATH }}
         run: |
-          sh -c "./src/build.sh"
+          sh -c "./src/scripts/build.sh"
           

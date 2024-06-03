@@ -1,4 +1,6 @@
-FROM ghcr.io/kolserdav/debian
+ARG RELEASE
+
+FROM ghcr.io/kolserdav/debian:${RELEASE}
 
 RUN apt-get update && apt-get install nginx -y
 

@@ -5,7 +5,7 @@ on:
     branches:
       - master
   pull_request:
-    types: [opened,edited]
+    types: [opened,synchronize]
     branches: [master]
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
           sh -c "./src/multiarch-install.sh" 
       - name: Build containers
         env:
-          ROOTFS_PATH: ${{ env.ROOTFS_PATH }}
+          ROOTFS_PATH: ${{ secrets.ROOTFS_PATH }}
         run: |
-          sh -c "./src/scripts/build.sh"
+          sh -c "./src/build.sh"
           

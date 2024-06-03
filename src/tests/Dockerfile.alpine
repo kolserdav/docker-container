@@ -1,0 +1,9 @@
+ARG RELEASE
+
+FROM ghcr.io/kolserdav/alpine:${RELEASE}
+
+RUN apk update && apk add nginx
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

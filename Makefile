@@ -13,8 +13,8 @@ rootfs:
 remount:
 	./src/scripts/remount.sh
 multiarch-install:
-	./src/scripts/multiarch-install.sh
+	./src/multiarch-install.sh
 login:
-	./src/scripts/login.sh
+	./src/login.sh
 test:
 	docker build ./tests

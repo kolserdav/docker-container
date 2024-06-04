@@ -21,6 +21,7 @@ do
       port=800$i
       container_name=test-$os-$release
       docker run -p "$port:80" --name $container_name -d $image
+      sleep 3
       res=$(curl "http://127.0.0.1:$port")
       echo "Request result:"
       echo "$res"
